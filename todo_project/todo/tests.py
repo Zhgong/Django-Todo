@@ -40,6 +40,10 @@ class ToDoSerializerTest(TestCase):
         self.assertTrue(self.serializer.is_valid())
 
     def test_serializer_save(self):
+        # 首先验证数据
+        self.assertTrue(self.serializer.is_valid(), self.serializer.errors)
+
+        # 然后保存
         todo = self.serializer.save()
         self.assertEqual(todo.title, self.todo_data['title'])
         self.assertEqual(todo.description, self.todo_data['description'])
